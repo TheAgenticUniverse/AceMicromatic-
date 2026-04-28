@@ -1,0 +1,81 @@
+{
+  "input": {
+    "material": "Mild Steel",
+    "operation": "turning",
+    "diameter_mm": 50,
+    "diameter_type": "workpiece",
+    "stage": "finishing"
+  },
+  "calculation": {
+    "vc_range": [150, 250],
+    "selected_vc": 250,
+    "rpm": 1592
+  },
+  "recommendations": [
+    {
+      "machine_name": "LC 12",
+      "machine_type": "Turning Centre",
+      "reason": "Suitable for turning. Max spindle speed 4000 rpm exceeds calculated 1592 rpm and supports max turning dia 140 mm.",
+      "matching_specifications": {
+        "max_spindle_speed_rpm": 4000,
+        "max_turning_dia_mm": 140,
+        "max_turning_length_mm": 200,
+        "od_turning_tool_size_mm": "20x20"
+      }
+    },
+    {
+      "machine_name": "LT 16 300 LM",
+      "machine_type": "Turning Centre",
+      "reason": "Suitable for turning. Max spindle speed 4000 rpm exceeds calculated 1592 rpm and supports max turning dia 320 mm.",
+      "matching_specifications": {
+        "max_spindle_speed_rpm": 4000,
+        "max_turning_dia_mm": 320,
+        "max_turning_length_mm": 300,
+        "od_turning_tool_size_mm": "25x25"
+      }
+    },
+    {
+      "machine_name": "LT 16 XL/LM",
+      "machine_type": "Turning Centre",
+      "reason": "Suitable for turning. Max spindle speed 4000 rpm exceeds calculated 1592 rpm and supports max turning dia 320 mm.",
+      "matching_specifications": {
+        "max_spindle_speed_rpm": 4000,
+        "max_turning_dia_mm": 320,
+        "max_turning_length_mm": 400,
+        "od_turning_tool_size_mm": "25x25"
+      }
+    },
+    {
+      "machine_name": "CS 16 LM",
+      "machine_type": "Turning Centre",
+      "reason": "Suitable for turning. Max spindle speed 4000 rpm exceeds calculated 1592 rpm and supports max turning dia 330 mm.",
+      "matching_specifications": {
+        "max_spindle_speed_rpm": 4000,
+        "max_turning_dia_mm": 330,
+        "max_turning_length_mm": 200,
+        "od_turning_tool_size_mm": "20x20"
+      }
+    },
+    {
+      "machine_name": "Vantage 500/LM",
+      "machine_type": "Standard 2 Axis Turning Centre",
+      "reason": "Suitable for finishing on 50 mm mild steel turning. Max spindle speed 4000 rpm exceeds calculated 1592 rpm and machine supports max turning dia 580 mm.",
+      "matching_specifications": {
+        "max_spindle_speed_rpm": 4000,
+        "max_turning_dia_mm": 580,
+        "max_turning_length_mm": 500,
+        "od_turning_tool_size_mm": "25x25"
+      }
+    }
+  ],
+  "assumptions": [
+    "Cutting speed selected at the higher end of the mild steel range for finishing: 250 m/min.",
+    "RPM calculated using turning diameter as workpiece diameter.",
+    "Recommendations are limited to machines with explicitly available turning and spindle speed data in the provided knowledge base."
+  ],
+  "notes": [
+    "RPM formula used: RPM = (Vc × 1000) / (π × D).",
+    "Calculated RPM rounded to nearest whole number.",
+    "Response generated strictly from the provided AceMicromatic knowledge base."
+  ]
+}
