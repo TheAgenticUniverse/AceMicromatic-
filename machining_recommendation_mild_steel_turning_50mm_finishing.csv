@@ -1,0 +1,4 @@
+input_material,input_operation,diameter_mm,diameter_type,stage,selected_vc_m_per_min,rpm,machine_name,machine_type,reason,max_spindle_speed_rpm,max_turning_dia_mm,max_turning_length_mm,spindle_motor_power_fanuc_kw
+Mild Steel,turning,50,workpiece,finishing,250,1592,J 300,Standard 2 Axis Turning Centre,"Suitable for turning a 50 mm mild steel workpiece in finishing conditions. Calculated RPM 1592 is within the machine maximum spindle speed of 4000 rpm.",4000,320,300,5.5/7.5
+Mild Steel,turning,50,workpiece,finishing,250,1592,Vantage 500/LM,Standard 2 Axis Turning Centre,"Good fit for finishing turning with adequate spindle speed margin and larger turning capacity.",4000,580,500,11/15
+Mild Steel,turning,50,workpiece,finishing,250,1592,LT 20,Standard 2 Axis Turning Centre,"Supports the required turning operation and calculated finishing RPM with sufficient spindle capability.",3000,370,670,11/15
