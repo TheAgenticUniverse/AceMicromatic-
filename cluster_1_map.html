@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cluster 1 Route Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <style>#map { height: 600px; width: 100%; }</style>
+</head>
+<body>
+    <h3>Delivery Route: Cluster 1</h3>
+    <div id="map"></div>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        var map = L.map('map').setView([3.2053, 101.556], 12);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+        var origin = [3.2053, 101.556];
+        var stops = [[3.1932652,101.5458882,"Stop 1: NAD SAMUDERA ENTERPRISE (Fri: Close 12pm-3pm)"],[3.1827378,101.5401381,"Stop 2: RESTORAN LEE HONG KEE SDN. BHD.OPEN-12-3PM MONDAY HALF DAY ONLY"],[3.2002098,101.5507472,"Stop 3: PASAR MINI PAYA JARAS"]];
+        var routeCoords = [origin].concat(stops.map(function(s){ return [s[0], s[1]]; })).concat([origin]);
+        var polyline = L.polyline(routeCoords, { color: 'blue', weight: 4, opacity: 0.7, dashArray: '10, 10' }).addTo(map);
+        L.marker(origin).addTo(map).bindPopup('<b>START: Origin</b>');
+        stops.forEach(function(s) {
+            L.marker([s[0], s[1]]).addTo(map).bindPopup(s[2]);
+        });
+        map.fitBounds(polyline.getBounds());
+    </script>
+</body>
+</html>
