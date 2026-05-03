@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cluster 3 Route Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <style>#map { height: 600px; width: 100%; }</style>
+</head>
+<body>
+    <h3>Delivery Route: Cluster 3</h3>
+    <div id="map"></div>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        var map = L.map('map').setView([3.2053, 101.556], 12);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+        var origin = [3.2053, 101.556];
+        var stops = [[3.1899834,101.5649231,"Stop 1: BERAS AGRO (M) SDN BHD"],[3.1905466,101.5658297,"Stop 2: RESTORAN SERI RASA"],[3.1882442,101.5649721,"Stop 3: PINNACLE FOODS (M) SDN BHD"],[3.187388,101.5666542,"Stop 4: MOITTRY INFINITY SDN BHD"],[3.1882925,101.5686546,"Stop 5: PASA RAYA TOP CIRCUITS SDN BHD"],[3.187566,101.571467,"Stop 6: ASIAN DINE SDN BHD"],[3.188169,101.572788,"Stop 7: ENG HUP SENG SESAME OIL & SAUCE FACTORY SDN BHD-DELIVER BY FORKLIFT"],[3.188149,101.573081,"Stop 8: RESTORAN MEI JING (Open 2pm-10pm,KHAMIS TUTUP)"],[3.188154,101.573128,"Stop 9: BUMI SEHATI FROZEN FOOD SDN BHD"],[3.188163,101.573131,"Stop 10: SRI RANTAU FOOD MART (8.00am – 12.00pm / 2.00pm – 5.00pm) (Tue & Sun Off)"],[3.188202,101.573154,"Stop 11: PANTAI SELAMAT (IM) S/B"],[3.188219,101.57318,"Stop 12: SEMAQ IQHLAS SDN BHD"],[3.188286,101.573236,"Stop 13: HO KIM WEI (1pm - 3pm : no delivery)"],[3.188298,101.573231,"Stop 14: PERNIAGAAN HE SOON (no delivery on Monday)"],[3.128957,101.465118,"Stop 15: AMSB RESOURCES SERVICES SDN. BHD. (Mon-Sat: 9.30am-6pm|Fri: 12pm-3pm rest)"],[3.1905493,101.565561,"Stop 16: FK SALMA ENTERPRISE"]];
+        var routeCoords = [origin].concat(stops.map(function(s){ return [s[0], s[1]]; })).concat([origin]);
+        var polyline = L.polyline(routeCoords, { color: 'blue', weight: 4, opacity: 0.7, dashArray: '10, 10' }).addTo(map);
+        L.marker(origin).addTo(map).bindPopup('<b>START: Origin</b>');
+        stops.forEach(function(s) {
+            L.marker([s[0], s[1]]).addTo(map).bindPopup(s[2]);
+        });
+        map.fitBounds(polyline.getBounds());
+    </script>
+</body>
+</html>
