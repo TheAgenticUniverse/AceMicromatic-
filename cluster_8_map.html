@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cluster 8 Route Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <style>#map { height: 600px; width: 100%; }</style>
+</head>
+<body>
+    <h3>Delivery Route: Cluster 8</h3>
+    <div id="map"></div>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        var map = L.map('map').setView([3.2053, 101.556], 12);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+        var origin = [3.2053, 101.556];
+        var stops = [[3.219705044,101.6294093,"Stop 1: BIG TREE CORNER"],[3.214478948,101.6320953,"Stop 2: CAMP FOREST RESTAURANT (Open 11.30am-10.30pm)"],[3.213731,101.6341568,"Stop 3: PAN HEONG BAK KUT TEH"],[3.212824,101.6379809,"Stop 4: RING ZHI VAGETARIAN RESTAURANT (11AM-7PM)"],[3.212679,101.6385787,"Stop 5: RESTORAN FERN HEONG (8.30AM-4.30PM)"],[3.215355,101.639214,"Stop 6: JODAN WORLD SDN BHD"],[3.2204941,101.6517953,"Stop 7: PARK LOKE YUN SUPERMARKET"],[3.214863859,101.653769,"Stop 8: CHOP HONG CHAN (Open 8am)"],[3.206207093,101.6533077,"Stop 9: BEN MART TRADING SDN BHD"],[3.217327111,101.7381495,"Stop 10: BESTA CORPORATION SDN BHD"],[3.2160498,101.6258664,"Stop 11: MKR STORE"]];
+        var routeCoords = [origin].concat(stops.map(function(s){ return [s[0], s[1]]; })).concat([origin]);
+        var polyline = L.polyline(routeCoords, { color: 'blue', weight: 4, opacity: 0.7, dashArray: '10, 10' }).addTo(map);
+        L.marker(origin).addTo(map).bindPopup('<b>START: Origin</b>');
+        stops.forEach(function(s) {
+            L.marker([s[0], s[1]]).addTo(map).bindPopup(s[2]);
+        });
+        map.fitBounds(polyline.getBounds());
+    </script>
+</body>
+</html>
