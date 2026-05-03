@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cluster 6 Route Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <style>#map { height: 600px; width: 100%; }</style>
+</head>
+<body>
+    <h3>Delivery Route: Cluster 6</h3>
+    <div id="map"></div>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        var map = L.map('map').setView([3.2053, 101.556], 12);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+        var origin = [3.2053, 101.556];
+        var stops = [[3.183931,101.613617,"Stop 1: JIN HUANG"],[3.183922,101.61362,"Stop 2: PD DELIMEE FOOD INDUSTRIES"],[3.183918,101.613631,"Stop 3: TMS SUPER STORE"],[3.183945,101.61364,"Stop 4: HAJI SHARIFF CENDOL"],[3.183989,101.613656,"Stop 5: JT FOOD MART"],[3.183843,101.613623,"Stop 6: SRI RANTAU SPEED MART - 3pm close every day"],[3.199847,101.617757,"Stop 7: SOON CHEONG MARINE PRODUCTS SDN BHD"],[3.20312424,101.6210952,"Stop 8: BEST RETAIL SDN BHD (BR INGREDIENTS) (Mon to Sat 9.30am-6.30pm) (Sun & PH 9.30am-3pm)"],[3.201396,101.631682,"Stop 9: KINDNESS ENTERPRISE (CLOSED MONDAY)"],[3.1972327,101.636834,"Stop 10: OVAL LAKE DEVELOPMENT SDN BHD (Mon-Fri: 9am-4pm|Lunch: 12pm-2pm)"],[3.1885897,101.6387798,"Stop 11: HAPPY SAM VEGE GARDEN"],[3.212531,101.64315,"Stop 12: WONG YEE HUEK (THURSDAY OFF)"],[3.183922,101.613608,"Stop 13: H AND C FRESH SDN. BHD. (SAT-Closed, 1pm-3pm lunch)"]];
+        var routeCoords = [origin].concat(stops.map(function(s){ return [s[0], s[1]]; })).concat([origin]);
+        var polyline = L.polyline(routeCoords, { color: 'blue', weight: 4, opacity: 0.7, dashArray: '10, 10' }).addTo(map);
+        L.marker(origin).addTo(map).bindPopup('<b>START: Origin</b>');
+        stops.forEach(function(s) {
+            L.marker([s[0], s[1]]).addTo(map).bindPopup(s[2]);
+        });
+        map.fitBounds(polyline.getBounds());
+    </script>
+</body>
+</html>
