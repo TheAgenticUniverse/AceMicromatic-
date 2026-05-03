@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cluster 2 Route Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <style>#map { height: 600px; width: 100%; }</style>
+</head>
+<body>
+    <h3>Delivery Route: Cluster 2</h3>
+    <div id="map"></div>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        var map = L.map('map').setView([3.2053, 101.556], 12);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+        var origin = [3.2053, 101.556];
+        var stops = [[3.1975612,101.5654258,"Stop 1: RESTORAN KONG MAH SDN BHD (open 7am - 4pm)(tuesday closed)"],[3.1968558,101.5657222,"Stop 2: RESTORAN C&Y - (OPEN 7AM-12PM)"],[3.1968201,101.5667535,"Stop 3: ENG SIANG GROCER (Mon: Close|Loading at 9.30am-7.30pm)"],[3.196536,101.567435,"Stop 4: SUN THONG HING SDN BHD"],[3.1973148,101.567381,"Stop 5: AZIZI MINI MARKET"],[3.197425,101.56801,"Stop 6: ST.MARK\'S COZY HOME"],[3.197716,101.568073,"Stop 7: KS MART SDN BHD"],[3.1984813,101.5670179,"Stop 8: PASAR MINI KURNIA MAJU - JUMAAT TUTUP"],[3.198458,101.5692969,"Stop 9: CHIA SHING FOOD INDUSTRIES SDN BHD"],[3.1982949,101.5732,"Stop 10: RESTORAN BAK KUT TEH KIM KEE"],[3.1957531,101.5645649,"Stop 11: LASHIKA SPICES - OPEN 7AM-10PM & 2PM-4:30PM - (11AM-2PM TAK BOLEH DELIVERY)"],[3.192631,101.5625203,"Stop 12: NUR SAKINAH TRADING"],[3.210918,101.567095,"Stop 13: ADA CASH & CARRY SDN BHD (Mon: No delivery after 2 pm)"],[3.2153632,101.5662228,"Stop 14: AURA NURILHAM ENTERPRISE"],[3.2121628,101.5726418,"Stop 15: RAJDHANI SDN BHD"],[3.196037479,101.6420222,"Stop 16: AGRO 19 BERHAD"],[3.21061,101.566028,"Stop 17: HAI SOON HENG TRADING (Delivery after 12pm)"]];
+        var routeCoords = [origin].concat(stops.map(function(s){ return [s[0], s[1]]; })).concat([origin]);
+        var polyline = L.polyline(routeCoords, { color: 'blue', weight: 4, opacity: 0.7, dashArray: '10, 10' }).addTo(map);
+        L.marker(origin).addTo(map).bindPopup('<b>START: Origin</b>');
+        stops.forEach(function(s) {
+            L.marker([s[0], s[1]]).addTo(map).bindPopup(s[2]);
+        });
+        map.fitBounds(polyline.getBounds());
+    </script>
+</body>
+</html>
