@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cluster 11 Route Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <style>#map { height: 600px; width: 100%; }</style>
+</head>
+<body>
+    <h3>Delivery Route: Cluster 11</h3>
+    <div id="map"></div>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        var map = L.map('map').setView([3.2053, 101.556], 12);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+        var origin = [3.2053, 101.556];
+        var stops = [[3.196440575,101.6646699,"Stop 1: 126 RESTAURANT (9AM-3.30PM)"],[3.185554228,101.6774922,"Stop 2: ALI FOOD CORNER - RESTORAN ALI FOOD\'S CORNER (SEGAMBUT)"],[3.177282,101.687117,"Stop 3: PASARAYA DANIYA SDN BHD - sunday closed ( business hour 11.00 am- 08.00 pm)"],[3.188843,101.691243,"Stop 4: KEDAI UBAT DAN RUNCIT HUAKSON"],[3.195193933,101.6916745,"Stop 5: AS BISMI MINI MART (9am-9pm|Fri: 12pm-3pm)"],[3.196506,101.709813,"Stop 6: SHAN MGT ENTERPRISE (Fri: 1pm-5pm close)"],[3.131789,101.753551,"Stop 7: 29 GROCER (Open 8.30am-5.30pm)"],[3.198416112,101.6579334,"Stop 8: ATHILAKSHMI CASH & CARRY SDN BHD"]];
+        var routeCoords = [origin].concat(stops.map(function(s){ return [s[0], s[1]]; })).concat([origin]);
+        var polyline = L.polyline(routeCoords, { color: 'blue', weight: 4, opacity: 0.7, dashArray: '10, 10' }).addTo(map);
+        L.marker(origin).addTo(map).bindPopup('<b>START: Origin</b>');
+        stops.forEach(function(s) {
+            L.marker([s[0], s[1]]).addTo(map).bindPopup(s[2]);
+        });
+        map.fitBounds(polyline.getBounds());
+    </script>
+</body>
+</html>
